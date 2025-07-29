@@ -2,7 +2,7 @@ import os
 import numpy as np
 from astropy.io import fits
 from scipy.optimize import curve_fit
-from cubelines.modelutils import O3_1comp, get_muse_lsf
+from model import O3_1comp
 import emcee
 import time
 import sys
