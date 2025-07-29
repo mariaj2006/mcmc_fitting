@@ -1,0 +1,1 @@
+fit gaussians using mcmc
