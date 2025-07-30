@@ -158,13 +158,16 @@ for x, y in zip(xx[s1:s2], yy[s1:s2]):
     params = ['z','sig','amp']
     flat_samples = sampler.get_chain(discard=500, flat=True)
     
-    
     for i in range(ndim):
         mcmc = np.percentile(flat_samples[:, i], [16, 50, 84])
         center = mcmc[1]
         left_sd = mcmc[1] - mcmc[0]
         right_sd = mcmc[2] - mcmc[1]
-        print(f'{params[i]} is -{left_sd:.5f} {center:.5f} +{right_sd:.5f}')
+        text_to_save = f'{params[i]} is -{left_sd:.5f} {center:.5f} +{right_sd:.5f}'
+        file_name = f'mcmc_fitting/results/mc_{x}_{y}.txt'
+        with open(file_name, 'w') as file:
+            file.write(text_to_save)
+        
     print(time.time() - t0,'s')
     
     mcmc_z = np.percentile(flat_samples[:, 0], [16, 50, 84])
